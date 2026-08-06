@@ -1,0 +1,29 @@
+/*
+Recursive binary search        Input: [2,4,6,8,10], target=6        Output: index 2
+*/
+
+fun binarySearch(arr: IntArray, left: Int, right: Int, target: Int): Int {
+    if (left > right) {
+        return -1
+    }
+
+    val mid = left + (right - left) / 2
+
+    return when {
+        arr[mid] == target -> mid
+        arr[mid] > target -> binarySearch(arr, left, mid - 1, target)
+        else -> binarySearch(arr, mid + 1, right, target)
+    }
+}
+
+fun main() {
+    val arr = intArrayOf(2, 4, 6, 8, 10)
+    val target = 6
+
+    val index = binarySearch(arr, 0, arr.size - 1, target)
+
+    if (index != -1)
+        println("Target found at index $index")
+    else
+        println("Target not found")
+}
